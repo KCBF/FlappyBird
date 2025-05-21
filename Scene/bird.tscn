@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dtilpyyc3gkh2"]
 
-[ext_resource type="Script" path="res://Scripts/bird.gd" id="1_ngkor"]
+[ext_resource type="Script" uid="uid://bs7xten8txd7b" path="res://Scripts/bird.gd" id="1_ngkor"]
 [ext_resource type="Texture2D" uid="uid://bjn7mqbj3rrm" path="res://Assets/yellowbird-midflap.png" id="1_wejmr"]
 [ext_resource type="Texture2D" uid="uid://bxetx2w3gs4gr" path="res://Assets/yellowbird-downflap.png" id="3_hed3f"]
 [ext_resource type="Texture2D" uid="uid://cfmtmqos4atil" path="res://Assets/yellowbird-upflap.png" id="4_qjk42"]
@@ -43,8 +43,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_khapi"]
 _data = {
-"flap_wings": SubResource("Animation_dne58"),
-"idle": SubResource("Animation_1kly1")
+&"flap_wings": SubResource("Animation_dne58"),
+&"idle": SubResource("Animation_1kly1")
 }
 
 [node name="Bird" type="CharacterBody2D"]
@@ -62,5 +62,5 @@ shape = SubResource("CapsuleShape2D_q700l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_khapi")
+&"": SubResource("AnimationLibrary_khapi")
 }

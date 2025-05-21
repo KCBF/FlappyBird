@@ -2,60 +2,58 @@ extends CharacterBody2D
 
 class_name Bird
 
+## Emitted when the game starts (bird begins falling)
 signal game_started
 
-@export var gravity = 900.0
-@export var jump_force: int = -300
-@onready var animation_player = $AnimationPlayer
+@export var gravity: float = 900.0
+@export var jump_force: int = -240
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var max_speed = 400
-var rotation_speed = 2
+const MAX_SPEED: int = 400
+const ROTATION_SPEED: float = 2.0
 
-var is_started = false
-var should_process_input = true
+var is_started: bool = false
+var should_process_input: bool = true
 
-func _ready():
+func _ready() -> void:
 	velocity = Vector2.ZERO
 	animation_player.play("idle")
+	# Start the game immediately
+	is_started = true
+	animation_player.play("flap_wings")
+	game_started.emit()
 
-func _physics_process(delta):
-	if Input.is_action_just_pressed("jump") && should_process_input:
-		if !is_started: 
-			animation_player.play("flap_wings")
-			game_started.emit()
-			is_started = true
+func _physics_process(delta: float) -> void:
+	if should_process_input and _is_flap_input():
 		jump()
-		
-	if !is_started:
+	if not is_started:
 		return
 	velocity.y += gravity * delta
-	
-	if velocity.y > max_speed:
-		velocity.y = max_speed
-	
+	if velocity.y > MAX_SPEED:
+		velocity.y = MAX_SPEED
 	move_and_collide(velocity * delta)
-	
 	rotate_bird()
-	
-	
-func jump():
+
+func _is_flap_input() -> bool:
+	# Accept any key, mouse button, or screen touch
+	return Input.is_anything_pressed()
+
+func jump() -> void:
 	velocity.y = jump_force
 	rotation = deg_to_rad(-30)
-			
 
-func rotate_bird():
+func rotate_bird() -> void:
 	# Rotate downwards when falling
 	if velocity.y > 0 and rad_to_deg(rotation) < 90:
-		rotation += rotation_speed * deg_to_rad(1)
+		rotation += ROTATION_SPEED * deg_to_rad(1)
 	# Rotate upwards when rising
 	elif velocity.y < 0 and rad_to_deg(rotation) > -30:
-		rotation -= rotation_speed * deg_to_rad(1)
+		rotation -= ROTATION_SPEED * deg_to_rad(1)
 
-
-func kill():
+func kill() -> void:
 	should_process_input = false
-	
-func stop():
+
+func stop() -> void:
 	animation_player.stop()
 	gravity = 0
 	velocity = Vector2.ZERO

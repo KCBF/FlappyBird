@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://3o0d528vtdwf"]
 
-[ext_resource type="Script" path="res://Scene/fade.gd" id="1_bfew3"]
+[ext_resource type="Script" uid="uid://c47r4gs2imohl" path="res://Scene/fade.gd" id="1_bfew3"]
 
 [sub_resource type="Animation" id="Animation_jly56"]
 resource_name = "fade"
@@ -20,7 +20,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c7ary"]
 _data = {
-"fade": SubResource("Animation_jly56")
+&"fade": SubResource("Animation_jly56")
 }
 
 [node name="Fade" type="Node"]
@@ -40,7 +40,7 @@ color = Color(0.666667, 0.666667, 0.666667, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_c7ary")
+&"": SubResource("AnimationLibrary_c7ary")
 }
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,33 @@
+# Godot-specific generated files and directories
+.godot/
+.godot/editor/
+.godot/imported/
+.godot/shader_cache/
+.godot/exported/
+*.uid
+*.import
+*.gdignore
+
+# Build and export directories
+BUILD_APK/
+android/
+android/build/
+addons/godotopenxrvendors/.bin/
+
+# Local configuration files
+local.gd
+
+# Large binary files and assets (optional, adjust as needed)
+# *.vrm
+# *.gltf
+# *.glb
+# *.png
+# *.jpg
+# *.jpeg
+# *.svg
+# *.tres
+# *.res
+# *.scn
+# *.tscn
+# *.ctex
+# *.md5 
